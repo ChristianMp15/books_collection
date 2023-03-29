@@ -1,14 +1,15 @@
-import { getCompletedBooks } from "@/connection/frontend/connection";
+import BookList from "@/components/BookList";
+import { getCompletedBooks, getAllBooks } from "@/connection/frontend/connection";
+
 
 function Home({ books }) {
-  console.log(books);
-  return<div>Home</div>
+  return <BookList data={books}/>
 }
 export default Home;
 // Fetch the books
 
 export const getStaticProps = async () => {
-  const books = await getCompletedBooks();
+  const books = await getAllBooks();
 
   return {
     props: {

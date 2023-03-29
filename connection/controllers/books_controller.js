@@ -25,7 +25,9 @@ export const addBook = async(req,res) => {
         !author &&
         author.trim() === "" &&
         !imageUrl &&
-        imageUrl.trim() === "" 
+        imageUrl.trim() === "" &&
+        !comment &&
+        comment.trim() === ""
     )
    {
     return res.status(422).json({ message: "Invalid input" });
@@ -40,7 +42,7 @@ try {
     return new Error(err);
 }
 if(!book) {
-    return res.status(405).json({ message: "Internal Serer Error"});
+    return res.status(500).json({ message: "Internal Serer Error"});
 }
 
 return res.status(201).json({ book })
@@ -58,7 +60,10 @@ export const updateBook = async (req, res) =>{
         !author &&
         author.trim() === "" &&
         !imageUrl &&
-        imageUrl.trim() === "" 
+        imageUrl.trim() === "" &&
+        !comment &&
+        comment.trim() === ""
+
     )
    {
     return res.status(422).json({ message: "Invalid input" });
@@ -77,7 +82,7 @@ try {
     return console.log(err);
 }
 if (!book) {
-    return res.status(405).json({ message:"Internal Service Error" })
+    return res.status(500).json({ message:"Internal Service Error" })
 }
 return res.status(200).json({ message: "Book updated" });
 };
