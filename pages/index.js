@@ -1,5 +1,5 @@
 import BookList from "@/components/BookList";
-import { getCompletedBooks, getAllBooks } from "@/connection/frontend/connection";
+import { getAllBooks } from "@/connection/frontend/connection";
 
 
 function Home({ books }) {

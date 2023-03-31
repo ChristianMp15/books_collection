@@ -8,7 +8,7 @@ export const getAllBooks = async (req, res) => {
         return new Error(err);
     }
     if (!books) {
-        return res.status(405).json({ message: "system error"});
+        return res.status(500).json({ message: "system error"});
     }
     if(books.length === 0) {
         return res.status(404).json({message: "No books found"});
@@ -82,7 +82,7 @@ try {
     return console.log(err);
 }
 if (!book) {
-    return res.status(500).json({ message:"Internal Service Error" })
+    return res.status(500).json({ message:"Internal Server Error" })
 }
 return res.status(200).json({ message: "Book updated" });
 };
@@ -99,7 +99,23 @@ export const deleteBook = async (req, res) => {
     }
 
     if (!book) {
-        return res.status(405).json({message: "unable to delete"});
+        return res.status(500).json({message: "unable to delete"});
     }
     return res.status(200).json({ message: "successfully deleted" });
 };
+
+export const getBookFromId = async (req,res) =>  {
+    const id = req.query.id;
+
+    let book;
+    try{
+        book = await Book.findById(id);
+    } catch (err){
+        return new Error(err)
+    }
+
+    if (!book){
+        return res.status(404).json({message: "No Book Found"})
+    }
+    return res.status(200).json ({ book })
+}

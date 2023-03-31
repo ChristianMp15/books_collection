@@ -9,5 +9,7 @@ export default async function handler(req, res) {
     } else if(req.method === "DELETE"){
         return deleteBook(req, res);
 
+    } else if (req.method === "GET") {
+        return getBookFromId(req, res)
     }
 }
