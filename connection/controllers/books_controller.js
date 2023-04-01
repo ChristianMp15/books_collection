@@ -51,7 +51,6 @@ return res.status(201).json({ book })
 
 export const updateBook = async (req, res) =>{
     const id = req.query.id;
-    consolog.log(id);
 
     const {title, author, imageUrl, comment, completed} = req.body;
     if(

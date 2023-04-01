@@ -55,4 +55,4 @@ const Form = ({ data, onSubmit }) => {
   </form>
 }
 
-export default Form
+export default Form;

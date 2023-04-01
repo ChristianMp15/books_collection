@@ -1,9 +1,23 @@
 import React from 'react'
 import { Card,  CardContent, CardActions, Typography, Button} from '@mui/material';
 import Link from 'next/link';
+import { deleteBook } from '@/connection/frontend/connection';
+import { useRouter } from 'next/router';
 
 
 const BookItem = ({ id, title, author, imageUrl, comment, completed}) => {
+  const router = useRouter();
+
+  const handleDelete = () => {
+   
+    deleteBook(id)
+    .then((value) => console.log(value)).then(() =>{
+      router.push("/")
+    })
+      .catch((err) => console.log(err))
+
+  }
+
   return (
     <Card sx={{ width:"100%", 
     height: "100%", 
@@ -41,15 +55,14 @@ const BookItem = ({ id, title, author, imageUrl, comment, completed}) => {
           Edit
         </Button>
         </Link>
-        <Link href={`/books/${id}`}>
-        <Button size="small" color="primary">
+        <Button onClick={handleDelete} size="small" color="primary">
           Delete
         </Button>
-        </Link>
+    
         
       </CardActions>
     </Card>
   );
 }
 
-export default BookItem
+export default BookItem;

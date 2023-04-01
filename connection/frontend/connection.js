@@ -41,5 +41,31 @@ export const getBookFromId = async (id) => {
     }
     const data = await res.data;
     return data.book;
+};
+
+export const updateBook = async (id, data) => {
+    const res = await axios.put(`http://localhost:3000/api/book/${id}`, {
+        title: data.title,
+        author: data.author,
+        imageUrl: data.imageUrl,
+        comment: data.comment,
+        completed: Boolean(data.completed)
+    });
+    if (res.status !== 200){
+    return new Error ("Unable to Update");
+    }
+
+    const resData = await res.data;
+    return resData;
+   
+};
+
+export const deleteBook = async (id) =>{
+    const res = await axios.delete(`http://localhost:3000/api/book/${id}`);
+    if (res.status !== 200){
+        return new Error("Unable to delete")
+    }
+    const resData = await res.data;
+    return resData;
 }
 

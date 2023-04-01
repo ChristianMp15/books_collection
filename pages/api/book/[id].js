@@ -1,4 +1,4 @@
-import { deleteBook, updateBook } from "@/connection/controllers/books_controller";
+import { deleteBook, updateBook, getBookFromId } from "@/connection/controllers/books_controller";
 import { connectToDabase } from "@/connection/database";
 
 export default async function handler(req, res) {
